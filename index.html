@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Time Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        p {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the One-Time Link</h1>
+    <p>This link will only work once. If you are seeing this, you're the first to visit!</p>
+
+    <script>
+        // Create a flag in localStorage to track if the link was accessed
+        const linkAccessed = localStorage.getItem('linkAccessed');
+
+        if (linkAccessed) {
+            // If the link was already accessed, show a message and redirect
+            document.body.innerHTML = "<h1>Sorry, this link has already been accessed.</h1><p>Please contact the link creator for a new link.</p>";
+            setTimeout(() => {
+                window.location.href = "https://example.com"; // Redirect to fallback URL
+            }, 5000);
+        } else {
+            // If the link hasn't been accessed, mark it as accessed
+            localStorage.setItem('linkAccessed', 'true');
+            setTimeout(() => {
+                window.location.href = "https://your-final-destination.com"; // Redirect to the actual link
+            }, 3000);  // Redirect after 3 seconds (you can change this)
+        }
+    </script>
+</body>
+</html>
